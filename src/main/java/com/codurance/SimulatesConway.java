@@ -1,7 +1,14 @@
 package com.codurance;
 
+import org.mockito.Mock;
+
 public class SimulatesConway {
+
+    GenerateSeedWorld generatesSeedWorld;
+    OutputsWorld outputsWorld;
+
     public void simulate() {
-        throw new UnsupportedOperationException("Implement me!");
+        World seedWorld = generatesSeedWorld.generate();
+        outputsWorld.output(seedWorld);
     }
 }
