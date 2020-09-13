@@ -1,2 +1,1 @@
 # GameOfLifeNew
-# GameOfLifeNew
