@@ -20,6 +20,9 @@ public class SimulatesConwayTest {
     @Mock
     OutputsWorld outputsWorld;
 
+    @Mock
+    ReplacesWorld replacesWorld;
+
     @Test
     void zero_generations() {
         // Arrange
@@ -27,9 +30,25 @@ public class SimulatesConwayTest {
         when(generatesSeedWorld.generate())
                 .thenReturn(seedWorld);
         // Act
-        subject.simulate();
+        subject.simulate(0, 1337);
         // Assert
 
         verify(outputsWorld).output(seedWorld);
+    }
+
+    @Test
+    void one_generation() {
+        World seedWorld = new World();
+        when(generatesSeedWorld.generate())
+                .thenReturn(seedWorld);
+
+        World world2 = new World();
+        when(replacesWorld.replace(seedWorld, 1337)).thenReturn(world2);
+        // Act
+        subject.simulate(1, 1337);
+        // Assert
+
+        verify(outputsWorld).output(seedWorld);
+        verify(outputsWorld).output(world2);
     }
 }
