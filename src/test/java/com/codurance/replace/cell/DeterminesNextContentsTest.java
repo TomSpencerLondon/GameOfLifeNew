@@ -40,6 +40,32 @@ class DeterminesNextContentsTest {
         assertThat(result, instanceOf(Cell.class));
     }
 
+    @Test
+    void live_cells_survival() {
+        assertThat(subject.determine(new Cell(), liveNeighbours(0)), instanceOf(Nothing.class));
+        assertThat(subject.determine(new Cell(), liveNeighbours(1)), instanceOf(Nothing.class));
+        assertThat(subject.determine(new Cell(), liveNeighbours(2)), instanceOf(Cell.class));
+        assertThat(subject.determine(new Cell(), liveNeighbours(3)), instanceOf(Cell.class));
+        assertThat(subject.determine(new Cell(), liveNeighbours(4)), instanceOf(Nothing.class));
+        assertThat(subject.determine(new Cell(), liveNeighbours(5)), instanceOf(Nothing.class));
+        assertThat(subject.determine(new Cell(), liveNeighbours(6)), instanceOf(Nothing.class));
+        assertThat(subject.determine(new Cell(), liveNeighbours(7)), instanceOf(Nothing.class));
+        assertThat(subject.determine(new Cell(), liveNeighbours(8)), instanceOf(Nothing.class));
+    }
+
+    @Test
+    void dead_cells_reanimation() {
+        assertThat(subject.determine(new Nothing(), liveNeighbours(0)), instanceOf(Nothing.class));
+        assertThat(subject.determine(new Nothing(), liveNeighbours(1)), instanceOf(Nothing.class));
+        assertThat(subject.determine(new Nothing(), liveNeighbours(2)), instanceOf(Nothing.class));
+        assertThat(subject.determine(new Nothing(), liveNeighbours(3)), instanceOf(Cell.class));
+        assertThat(subject.determine(new Nothing(), liveNeighbours(4)), instanceOf(Nothing.class));
+        assertThat(subject.determine(new Nothing(), liveNeighbours(5)), instanceOf(Nothing.class));
+        assertThat(subject.determine(new Nothing(), liveNeighbours(6)), instanceOf(Nothing.class));
+        assertThat(subject.determine(new Nothing(), liveNeighbours(7)), instanceOf(Nothing.class));
+        assertThat(subject.determine(new Nothing(), liveNeighbours(8)), instanceOf(Nothing.class));
+
+    }
 
     private Collection<Point> liveNeighbours(int number) {
         List<Point> neighbours = new ArrayList<>();

@@ -9,9 +9,14 @@ import java.util.Collection;
 
 public class DeterminesNextContents {
     public Contents determine(Contents oldContents, Collection<Point> neighbours) {
-        if(countLive(neighbours) == 0)
-            return new Nothing();
-        return new Cell();
+        switch(countLive(neighbours)){
+            case 2:
+                return oldContents instanceof Cell ? new Cell() : new Nothing();
+            case 3:
+                return new Cell();
+            default:
+                return new Nothing();
+        }
     }
 
     private int countLive(Collection<Point> neighbours) {
