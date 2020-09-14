@@ -1,5 +1,7 @@
 package com.codurance.replace;
 
+import com.codurance.replace.cell.ReplacesCell;
+import com.codurance.values.Point;
 import com.codurance.values.World;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -52,7 +54,7 @@ public class ReplacesWorldTest {
         when(keepsTime.keep(42l)).thenReturn(timeLimit);
         MutableWorld world1 = new MutableWorld();
         Contents nextContents = new Contents();
-        Collection<Coordinates> neighbours = Arrays.asList(new Coordinates(50, 50));
+        Collection<Point> neighbours = Arrays.asList(new Point(null, new Coordinates(50, 50)));
         Outcome outcome = new Outcome(nextContents, neighbours);
         when(replacesCell.replace(new Coordinates(0, 0), world1)).thenReturn(outcome);
         Contents nextContents2 = new Contents();
