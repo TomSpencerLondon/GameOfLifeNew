@@ -1,5 +1,8 @@
 package com.codurance;
 
+import com.codurance.replace.ReplacesWorld;
+import com.codurance.values.World;
+
 public class SimulatesConway {
 
     GenerateSeedWorld generatesSeedWorld;
